@@ -1,0 +1,16 @@
+services:
+  sitehost:
+    build: .
+    image: sitehost:latest
+    container_name: sitehost
+    restart: unless-stopped
+    ports:
+      - "6767:6767"   # Admin-Panel
+      - "80:80"       # gehostete Sites (nginx)
+    volumes:
+      - sitehost_data:/data
+    environment:
+      - PORT=6767
+
+volumes:
+  sitehost_data:
